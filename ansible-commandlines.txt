@@ -1,0 +1,47 @@
+################################################
+##
+## samples for selecting hosts
+ansible --list-hosts all
+ansible --list-hosts "*"
+
+#name of group in hosts file
+ansible --list-hosts loadbalancer
+
+#wildcard filter
+ansible --list-hosts "app*"
+
+#multiple groups separated by a colon (deprecated)
+ansible --list-hosts database:control
+
+#multiple groups separated by a comma 
+ansible --list-hosts database,control
+
+#select first node in webserver group
+ansible --list-hosts webserver[0]
+
+#everything not in control group, bang excaped in bash
+ansible --list-hosts \!control
+
+
+################################################
+## simple commands
+
+#inernal ping module
+ansible -m ping all
+
+#command module (-m) executing "hostname" command (-a)
+ansible -m command -a "hostname" all
+
+#command with just -a is equiv, as command module is default module
+ansible -a "hostname" all
+
+
+
+################################################
+## using playbooks
+
+#simple playbook that executes "hostame" command
+ansible-playbook /vagrant/playbooks/hostname.yml
+
+
+
