@@ -2,6 +2,11 @@
   - hosts: loadbalancer
     become: true
     tasks: 
+       -name: install tools
+        apt: name={{ item }} state=present update_cache=yes
+        with_items:
+          - python-httplib2
+
       - name: install nginx
         apt: name=nginx state=present update_cache=yes
 
