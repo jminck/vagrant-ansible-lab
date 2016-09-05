@@ -1,10 +1,5 @@
 ---
   - hosts: control
     become: true
-    tasks:
-       -name: install tools
-        apt: name={{ item }} state=present update_cache=yes
-        with_items:
-          - python-httplib2
-          - curl
-
+    roles:
+      - control      
