@@ -8,7 +8,11 @@
       - python-mysqldb
 
   - name: copy demo app source
-    copy: src=files/demo/app/ dest=/var/www/demo mode=0755
+    copy: src=demo/app/ dest=/var/www/demo mode=0755
+    notify: restart apache2
+
+  - name: copy demo app config demo.wsgi
+    template: src=demo.wsgi.j2 dest=/var/www/demo/demo.wsgi mode=0755
     notify: restart apache2
 
   - name: copy apache virtual host config

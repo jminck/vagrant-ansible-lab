@@ -15,7 +15,7 @@
     service: name=nginx state=started enabled=yes
 
   - name: Get active sites
-    shell: ls -l /etc/nginx/sites-enabled
+    shell: ls -1 /etc/nginx/sites-enabled
     register: active
 
   - name: de-activate nginx sites
@@ -25,6 +25,9 @@
     notify: restart nginx
 
   - name: activate demo nginx site
-    file: src=/etc/nginx/sites-available/demo dest=/etc/nginx/sites-enabled/{{ item.key }} state=link
+    file: src=/etc/nginx/sites-available/{{ item.key }}}} dest=/etc/nginx/sites-enabled/{{ item.key }} state=link
     with_dict: sites
     notify: restart nginx
+
+  - name: ensure nginx started
+    service: name=nginx state=started enabled=yes
