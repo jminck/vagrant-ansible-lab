@@ -15,7 +15,7 @@
     service: name=nginx state=started enabled=yes
 
   - name: Get active sites
-    file: ls -l /etc/nginx/sites-enabled
+    shell: ls -l /etc/nginx/sites-enabled
     register: active
 
   - name: de-activate nginx sites
