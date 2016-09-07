@@ -25,7 +25,7 @@
     notify: restart nginx
 
   - name: activate demo nginx site
-    file: src=/etc/nginx/sites-available/{{ item }}}} dest=/etc/nginx/sites-enabled/{{ item }} state=link
+    file: src=/etc/nginx/sites-available/{{ item.key }} dest=/etc/nginx/sites-enabled/{{ item.key }} state=link
     with_dict: sites
     notify: restart nginx
 
