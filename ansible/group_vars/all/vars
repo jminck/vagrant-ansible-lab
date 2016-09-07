@@ -1,4 +1,8 @@
 ---
   db_name: demo
   db_user: demo
-  db_pass: demo
+  #vault password is demo
+  #edit with ansible-vault edit vault
+  #place password into ~/.vault_pass.txt with chmod 600 and add vault_password_file = ~/.vault_pass.txt to ansible.cfg
+  #to allow ansible to decrypt silently 
+  db_pass: "{{ vault_db_pass }}"
