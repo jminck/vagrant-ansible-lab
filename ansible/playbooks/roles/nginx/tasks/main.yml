@@ -14,8 +14,14 @@
   - name: ensure nginx started
     service: name=nginx state=started enabled=yes
 
-  - name: de-activate default nginx site
-    file: path=/etc/nginx/sites-enabled/default state=absent
+  - name: Get active sites
+    file: ls -l /etc/nginx/sites-enabled
+    register: active
+
+  - name: de-activate nginx sites
+    file: path=/etc/nginx/sites-enabled/{{ item }} state=absent
+    with_items: active.stdout_lines
+    when: item not in sites
     notify: restart nginx
 
   - name: activate demo nginx site
