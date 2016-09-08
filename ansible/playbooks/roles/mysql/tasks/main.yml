@@ -18,5 +18,8 @@
   - name: create demo database
     mysql_db: name={{ db_name}} state=present
 
+  - name: remove demo user
+    mysql_user: name=db_user_name host='{{ db_user_host}}' state=absent
+
   - name: create demo user
     mysql_user: name=db_user_name password=db_user_pass priv={{db_name}}.*:ALL host='{{ db_user_host}}' state=present update_password=always
