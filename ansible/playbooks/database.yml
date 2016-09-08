@@ -3,7 +3,8 @@
     become: true
     roles:
       - role: mysql
-        #come from group_vars/all.yml
+        #come from group_vars/all/vars
         db_user_name: "{{ db_user }}"
+        #come from group_vars/all/vault
         db_user_pass: "{{ db_pass }}"
         db_user_host: '%'
