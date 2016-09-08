@@ -19,7 +19,7 @@
     mysql_db: name={{ db_name }} state=present
 
   - name: remove demo user
-    mysql_user: name={{ db_user_name }} host='{{ db_user_hos t}}' state=absent
+    mysql_user: name={{ db_user_name }} host='{{ db_user_host }}' state=absent
 
   - debug: msg="mysql user creds - user:{{ db_user_name }} pass:{{ db_user_pass }}"
 
