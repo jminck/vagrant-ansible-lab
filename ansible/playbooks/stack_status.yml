@@ -1,6 +1,7 @@
 ---
   - hosts: loadbalancer
     become: true
+    gather_facts: false
     tasks:
       - name: verify nginx service status
         command: service nginx status
@@ -10,6 +11,7 @@
 
   - hosts: webserver
     become: true
+    gather_facts: false
     tasks:
       - name: verify apache2 service status
         command: service apache2 status
@@ -28,6 +30,7 @@
 
 
   - hosts: control
+    gather_facts: false
     tasks:
       - name: verify end-to-end response
         uri: url=http://{{item}} return_content=yes
@@ -49,6 +52,7 @@
 
 
   - hosts: loadbalancer
+    gather_facts: false
     tasks:
       - name: verify backend response
         uri: url=http://{{item}} return_content=yes
@@ -67,8 +71,3 @@
       - fail: msg="db failed to return content"
         when: "'Database Connected from' not in item.content"
         with_items: "{{app_db.results}}"
-
-
-
-
-
