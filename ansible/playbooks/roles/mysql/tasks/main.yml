@@ -3,25 +3,33 @@
     apt: name={{ item }} state=present
     with_items:
       - python-mysqldb
+    tags: ['packages']
 
   - name: install mysql-server
     apt: name=mysql-server state=present
+    tags: ['packages']
 
   - name: ensure mysql listening on all ports
     lineinfile: dest=/etc/mysql/my.cnf regexp=^bind-address
                 line="bind-address = *"
     notify: restart mysql
+    tags: ['configure']
 
   - name: ensure mysql started
     service: name=mysql state=started enabled=yes
+    tags: ['service']
 
   - name: create demo database
     mysql_db: name={{ db_name }} state=present
+    tags: ['configure']
 
   - name: remove demo user
     mysql_user: name={{ db_user_name }} host='{{ db_user_host }}' state=absent
+    tags: ['configure']
 
   - debug: msg="mysql user creds - user:{{ db_user_name }} pass:{{ db_user_pass }}"
+    tags: ['configure']
 
   - name: create demo user
     mysql_user: name={{ db_user_name }} password={{ db_user_pass }} priv={{ db_name }}.*:ALL host='{{ db_user_host }}' state=present update_password=always
+    tags: ['configure']

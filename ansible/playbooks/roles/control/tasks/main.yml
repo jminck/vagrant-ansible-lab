@@ -1,8 +1,8 @@
 ---
   - name: install tools
-    apt: name={{item}} state=present 
+    apt: name={{item}} state=present
     with_items:
       - curl
       - python-httplib2
-
-
+    tags: ['packages']
+    
