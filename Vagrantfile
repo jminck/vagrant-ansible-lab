@@ -18,6 +18,7 @@ Vagrant.configure(2) do |config|
   config.vm.define "control", primary: true do |h|
     h.vm.hostname =  "control"
     h.vm.network "private_network", ip: "192.168.135.10"
+    h.vm.provision :shell, inline: 'echo demo > /home/vagrant/.vault_pass.txt'
     h.vm.provision "shell" do |provision|
       provision.path = "provision_ansible.sh"
     end 
