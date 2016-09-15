@@ -7,17 +7,17 @@ This lab does not use Ansible via Vagrant, and thus Ansible is not a requirement
 The lab will implement the following configuration:
 
 -
-| Machine  Name | Role          | Network Configuration                  |
-|---------------|---------------|----------------------------------------|
-| control       | Ansible  host | private_network, ip: 192.168.135.10    |
-| lb01          | Load Balancer | private_network, ip: 192.168.135.101   |
-| app01         | web server 1  | private_network, ip: 192.168.135.111   |
-| app02         | web server 2  | private_network, ip: 192.168.135.112   |
-| db01          | mysql db      | private_network, ip: 192.168.135.121   |
+| Machine  Name | Role          | Network Configuration                  | OS                         |
+|---------------|---------------|----------------------------------------|----------------------------|
+| control       | Ansible  host | private_network, ip: 192.168.135.10    | Ubuntu Trusty64 (14 LTS)   |
+| lb01          | Load Balancer | private_network, ip: 192.168.135.101   | Ubuntu Trusty64 (14 LTS)   |
+| app01         | web server 1  | private_network, ip: 192.168.135.111   | Ubuntu Trusty64 (14 LTS)   |
+| app02         | web server 2  | private_network, ip: 192.168.135.112   | Ubuntu Trusty64 (14 LTS)   |
+| db01          | mysql db      | private_network, ip: 192.168.135.121   | Ubuntu Trusty64 (14 LTS)   |
 
 ## Quick Start
 
-* Sync this repo
+* Clone this repo
 * run `vagrant up` from the root of the synced repo (the folder with Vagrantfile in it)
 * Once the VMs are built, type `vagrant ssh control` to logon to the ansible controller from within your vagrant project folder
 * Change directories `cd /vagrant/ansible` which is the ansible subfolder of your vagrant project for this lab (the vagrant project folder is mounted within the VMs as /vagrant during provisioning)
