@@ -1,3 +1,7 @@
+{#
+see http://jinja.pocoo.org/ for syntax of Jinja2 templates
+#}
+
 upstream {{ item.key }} {
 {% for server in groups.webserver %}
 server {{ server }}:{{ item.value.backend }};
