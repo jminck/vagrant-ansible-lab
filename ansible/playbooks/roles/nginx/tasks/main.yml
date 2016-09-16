@@ -14,12 +14,14 @@
     with_dict: sites
     notify: restart nginx
     tags: ['configure']
-  
+
   - name: Get active sites
     shell: ls -1 /etc/nginx/sites-enabled
     register: active
+    changed_when: "active.stdout_lines != sites.keys()"
     tags: ['configure']
 
+  - debug: var=active.stdout_lines
   - name: de-activate nginx sites
     file: path=/etc/nginx/sites-enabled/{{ item }} state=absent
     with_items: active.stdout_lines
