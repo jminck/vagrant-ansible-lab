@@ -22,4 +22,5 @@ The lab will implement the following configuration:
 * Once the VMs are built, type `vagrant ssh control` to logon to the ansible controller from within your vagrant project folder
 * Change directories `cd /vagrant/ansible` which is the ansible subfolder of your vagrant project for this lab (the vagrant project folder is mounted within the VMs as /vagrant during provisioning)
 * run `ansible-playbook playbooks/site.yml` to build the entire 3 tier configuration (load balancer, sample web app, and database connection)
-* test that the application stack is working properly by running `curl http://lb01/db`
+* run `ansible-playbook playbooks/stack_status.yml` to validate status of each component
+* test that the application stack is working properly end to end by running `curl http://lb01/db`
