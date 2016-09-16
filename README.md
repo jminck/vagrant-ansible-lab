@@ -1,7 +1,7 @@
 # Overview
 
 This lab is based on the Udemy course https://www.udemy.com/mastering-ansible/
-The lab has been build with Virtualbox VM host, and may not work with other VM providers without modification.
+The lab has been built with Virtualbox VM host, and may not work with other VM providers without modification.
 This lab does not use Ansible via Vagrant, and thus Ansible is not a requirement on your Vagrant host. Ansible will be installed on an ansible host VM, and all playbooks to configure the lab machines will be run from there interactively, once Vagrant has built the base VMs. The lab configures a simple nginx load balancer, 2 web app servers and a mysql database.
 
 The lab will implement the following configuration:
