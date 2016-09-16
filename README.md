@@ -73,7 +73,7 @@ ansible --list-hosts database,control
 ####select first node in webserver group
 ansible --list-hosts webserver[0]
 
-####everything not in control group, bang excaped in bash
+####everything not in control group, bang escaped in bash
 ansible --list-hosts \!control
 
 
