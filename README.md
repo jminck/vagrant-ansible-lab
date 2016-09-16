@@ -26,6 +26,28 @@ The lab will implement the following configuration:
 * test that the application stack is working properly end to end by running `curl http://lb01/db`
 
 
+#Exploring the details
+* ./hosts
+  * file defining the servers to be orchestrated
+* ./ansible.cfg
+  * defines hosts file location and ansible vault password file location
+* ./group_vars/all/vars
+  * global variables file, includes database name and login user info
+* ./group_vars/all/vault
+  * file encrypted containing database user password (vault_db_pass) 
+  * you can view and edit the file with `ansible-vault edit group_vars/all/vault` - your decryption key specified in ansible.cfg will be used to decrypt and reencrypt the file transparently
+* ./site.yml - main playbook wrapper, which includes playbooks for the various server types, such as loadbalancer.yml, for building the front end load balancer
+*  ./loadbalancer.yml
+  *  defines affected hosts ("loadbalancer", which in turn is a group defined in ./hosts file)
+  *  references the role of type nginx, which means to include running the playbook in playbooks/roles/tasks/main.yml
+  * (same idea for database.yml, control.yml, webserver.yml)
+* ./playbooks/roles/nginx (same concept for each role in playbooks/roles/*)
+  * ./playbooks/roles/nginx/defaults/main.yml variable defaults
+  * ./playbooks/roles/nginx/vars/main.yml variables, if defined here would override the ones in defaults folder
+  * ./playbooks/roles/nginx/handlers/main.yml handler definitions for "notify" actions in tasks
+  * ./playbooks/roles/nginx/tasks/main.yml task step definitions
+  * ./playbooks/roles/nginx/templates/nginx.conf.j2 config file template, used in the "configure nginx site" step in tasks/main.yml, using the "template:" module to customize the .j2 file template into nginx.conf
+
 # Ansible syntax samples 
 
 ##Selecting and filtering hosts to work with
