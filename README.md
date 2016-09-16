@@ -18,6 +18,8 @@ The lab will implement the following configuration:
 # Quick Start
 
 * Clone this repo
+* Install the hostmanager Vagrant plugin if ytou haven't already `vagrant plugin install vagrant-hostmanager`
+  * on a Mac Vagrant host, `brew install libffi` was required prior to installing the plugin successfully
 * run `vagrant up` from the root of the synced repo (the folder with Vagrantfile in it)
 * Once the VMs are built, type `vagrant ssh control` to logon to the ansible controller from within your vagrant project folder
 * Change directories `cd /vagrant/ansible` which is the ansible subfolder of your vagrant project for this lab (the vagrant project folder is mounted within the VMs as /vagrant during provisioning)
